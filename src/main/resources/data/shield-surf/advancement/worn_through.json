@@ -1,0 +1,21 @@
+{
+  "parent": "shield-surf:shield_surfer",
+  "display": {
+    "icon": {
+      "id": "minecraft:shield",
+      "components": {
+        "minecraft:damage": 330
+      }
+    },
+    "title": "Worn Through",
+    "description": "Ride a shield until there is nothing left of it",
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "broke": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

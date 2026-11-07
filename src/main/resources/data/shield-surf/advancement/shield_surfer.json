@@ -1,0 +1,18 @@
+{
+  "parent": "minecraft:adventure/root",
+  "display": {
+    "icon": {
+      "id": "minecraft:shield"
+    },
+    "title": "Shield Surfer",
+    "description": "Ride a shield forty blocks without stopping",
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "rode": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

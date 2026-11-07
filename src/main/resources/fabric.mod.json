@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "shield-surf",
+	"version": "${version}",
+	"name": "Shield Surf",
+	"description": "Raise a shield in the air and ride it down the hill, the way Link does",
+	"authors": [
+		"justfatlard"
+	],
+	"contact": {
+		"homepage": "https://github.com/fatlard1993/shield-surf",
+		"sources": "https://github.com/fatlard1993/shield-surf",
+		"issues": "https://github.com/fatlard1993/shield-surf/issues"
+	},
+	"license": "MIT",
+	"icon": "assets/shield-surf/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"justfatlard.shield_surf.ShieldSurf"
+		]
+	},
+	"mixins": [
+		"shield-surf.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=${loaderVersion}",
+		"minecraft": "${minecraftDependency}",
+		"java": ">=25",
+		"pandorical": ">=15.0.0",
+		"fabric-api": "${fabricApiVersion}"
+	},
+	"custom": {
+		"modmenu": {
+			"links": {
+				"modmenu.donate": "https://github.com/sponsors/fatlard1993"
+			}
+		}
+	}
+}

@@ -1,0 +1,18 @@
+{
+	"schemaVersion": 1,
+	"id": "shield-surf-gametest",
+	"version": "1.0.0",
+	"name": "Shield Surf smoke test",
+	"description": "Loads the mod, joins a world, raises a shield in the air and checks the ride begins and ends.",
+	"license": "MIT",
+	"environment": "*",
+	"entrypoints": {
+		"fabric-client-gametest": [
+			"justfatlard.shield_surf.gametest.SmokeTest"
+		]
+	},
+	"depends": {
+		"shield-surf": "*",
+		"fabric-client-gametest-api-v1": "*"
+	}
+}

@@ -1,0 +1,10 @@
+{
+	"required": true,
+	"package": "justfatlard.shield_surf.mixin",
+	"minVersion": "0.8",
+	"compatibilityLevel": "JAVA_25",
+	"injectors": { "defaultRequire": 1 },
+	"mixins": [
+		"PlayerPoseMixin"
+	]
+}

@@ -1,0 +1,12 @@
+{
+	"overview": [
+		"Raise a shield while you are in the air and you land on it and ride. Hold it up to keep riding, lower it to stop. Every drop adds speed, flat ground bleeds it off, and the shield wears on hard ground. Sand, snow and ice are free."
+	],
+	"versions": {
+		"1.0.0": [
+			"Shield surfing. Jump, raise a shield, land on it and ride it down the hill.",
+			"Shields wear a point every half second on hard ground; sand, snow and ice are free. An op can turn the wear off.",
+			"Two advancements: a ride of forty blocks, and a shield ridden until it breaks."
+		]
+	}
+}
