@@ -1,0 +1,35 @@
+{
+  "demo": {
+    "name": "Shield Surf",
+    "icon": "minecraft:shield",
+    "about": [
+      "Raise a shield while you're in the air and you land on it and slide downhill, faster for every block you drop.",
+      "Hold the shield in your main hand, jump off a slope and hold it up to ride down the dunes. If the ground here is too flat, pile the sand into a stepped ramp and ride down that."
+    ]
+  },
+  "pvp_preset": 1,
+  "needs": ["shield-surf"],
+  "preset": {
+    "name": "Shield Surf",
+    "icon": "minecraft:shield",
+    "pvp": false,
+    "game_mode": "survival",
+    "entry_kit": [
+      {"slot": 0, "item": {"id": "minecraft:shield", "count": 1}},
+      {"slot": 1, "item": {"id": "minecraft:sand", "count": 64}},
+      {"slot": 2, "item": {"id": "minecraft:sand", "count": 64}},
+      {"slot": 3, "item": {"id": "minecraft:iron_shovel", "count": 1}},
+      {"slot": 7, "item": {"id": "minecraft:shield", "count": 1}},
+      {"slot": 8, "item": {"id": "minecraft:cooked_beef", "count": 8}}
+    ],
+    "respawn_kit": "entry",
+    "goal": "time",
+    "mobs": "off",
+    "life": 15,
+    "size": 4,
+    "world": "overworld",
+    "shape": "natural",
+    "biome": "minecraft:desert",
+    "weather": "clear"
+  }
+}
