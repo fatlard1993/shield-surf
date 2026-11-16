@@ -72,6 +72,7 @@ public final class Rides {
 		int still;
 		int groundTicks;
 		double distance;
+		boolean longRideAwarded;
 		Vec3 lastPos;
 	}
 
@@ -150,7 +151,10 @@ public final class Rides {
 		Vec3 pos = player.position();
 		ride.distance += Math.hypot(pos.x - ride.lastPos.x, pos.z - ride.lastPos.z);
 		ride.lastPos = pos;
-		if (ride.distance >= LONG_RIDE) Awards.longRide(player);
+		if (!ride.longRideAwarded && ride.distance >= LONG_RIDE) {
+			ride.longRideAwarded = true;
+			Awards.longRide(player);
+		}
 
 		boolean onGround = player.onGround();
 		if (!onGround) {
