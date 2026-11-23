@@ -8,7 +8,7 @@ A Fabric mod for riding a shield down a hill, the way Link does. Jump, raise you
 - **Slopes are the point.** Every block you drop adds speed, so a hillside carries you faster and faster, up to about three times a sprint. Flat ground gives nothing back and bleeds the speed off in a second or two.
 - **You cannot ride uphill.** A rise is a wall while you are on the shield; you stop against it and step off.
 - **Hop while you ride.** A jump keeps the shield under you, and a jump off a ledge lands with the ledge's worth of speed.
-- **You crouch on the shield**, as everyone watching can see.
+- **The shield is under your feet** from the moment the ride begins: look down and you are standing on it, face up, pointed the way you are going. Everyone watching sees it too, with you crouched on top.
 - **Water ends the ride**, and so does standing still on the shield for half a second.
 
 ## Wear

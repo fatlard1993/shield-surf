@@ -127,10 +127,12 @@ public final class Rides {
 		ride.takeoffY = player.getY();
 		ride.lastPos = player.position();
 		rides.put(player.getUUID(), ride);
+		Boards.lay(player, player.getUseItem());
 	}
 
 	private static void end(ServerPlayer player) {
 		if (rides.remove(player.getUUID()) == null) return;
+		Boards.lift(player);
 		release(player, Attributes.FRICTION_MODIFIER);
 		release(player, Attributes.STEP_HEIGHT);
 		release(player, Attributes.AIR_DRAG_MODIFIER);
@@ -155,6 +157,8 @@ public final class Rides {
 			ride.longRideAwarded = true;
 			Awards.longRide(player);
 		}
+
+		Boards.follow(player, player.getKnownMovement(), player.getUseItem());
 
 		boolean onGround = player.onGround();
 		if (!onGround) {

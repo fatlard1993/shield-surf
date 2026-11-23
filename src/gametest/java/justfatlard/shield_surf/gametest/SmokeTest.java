@@ -3,22 +3,26 @@ package justfatlard.shield_surf.gametest;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import justfatlard.pandorical.gametest.Smoke;
+import justfatlard.shield_surf.Boards;
 import justfatlard.shield_surf.Rides;
 import net.fabricmc.fabric.api.client.gametest.v1.FabricClientGameTest;
 import net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.Display;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.entity.EntityTypeTest;
 
 /**
  * This mod loads, its mixin binds, and a world comes up with it installed.
  *
  * <p>At full level, a player dropped from a height who holds the use key on a shield is riding
- * before they land, with the ground made slick for them. Standing still on the shield ends the ride
- * a moment after landing, and letting go of the key ends it at once, slick ground and all.
+ * before they land, with the ground made slick for them and a board under their feet: two boards,
+ * of which their own client is shown one. Standing still on the shield ends the ride a moment after
+ * landing, and letting go of the key ends it at once, slick ground, boards and all.
  *
  * <p>The shield is raised through the client's own use key, as a player raises it, and not by
  * starting the use on the server: a client lets go of anything it did not raise itself the moment
@@ -41,6 +45,7 @@ public final class SmokeTest implements FabricClientGameTest {
 				ServerPlayer player = session.player();
 				if (riding(player)) throw new AssertionError("standing still on the shield did not end the ride");
 				if (slick(player)) throw new AssertionError("the ride is over but the ground is still slick");
+				if (boardsLeft(player) > 0) throw new AssertionError("the ride is over but its boards are still in the world");
 			});
 			session.context().getInput().releaseKey(options -> options.keyUse);
 			session.waitTicks(5);
@@ -52,6 +57,7 @@ public final class SmokeTest implements FabricClientGameTest {
 				ServerPlayer player = session.player();
 				if (riding(player)) throw new AssertionError("lowering the shield did not end the ride: " + state(player));
 				if (slick(player)) throw new AssertionError("the shield is down but the ground is still slick");
+				if (boardsLeft(player) > 0) throw new AssertionError("the shield is down but its boards are still in the world");
 			});
 		});
 	}
@@ -71,7 +77,17 @@ public final class SmokeTest implements FabricClientGameTest {
 			if (player.onGround()) throw new AssertionError("still on the ground after being lifted eight blocks");
 			if (!riding(player)) throw new AssertionError("a shield raised in the air did not start a ride: " + state(player));
 			if (!slick(player)) throw new AssertionError("riding, but the ground was not made slick");
+			long boards = player.getPassengers().stream().filter(Boards::isBoard).count();
+			if (boards != 2) throw new AssertionError("riding with " + boards + " boards under the rider, not two");
 		});
+		session.context().runOnClient(client -> {
+			long seen = client.player.getPassengers().stream().filter(e -> e instanceof Display.ItemDisplay).count();
+			if (seen != 1) throw new AssertionError("the rider's client sees " + seen + " boards under itself, not one");
+		});
+	}
+
+	private static long boardsLeft(ServerPlayer player) {
+		return player.level().getEntities(EntityTypeTest.forClass(Display.ItemDisplay.class), Boards::isBoard).size();
 	}
 
 	private static void waitForTheGround(Smoke.Session session) {

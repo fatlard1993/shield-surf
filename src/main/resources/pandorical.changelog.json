@@ -3,6 +3,9 @@
 		"Raise a shield while you are in the air and you land on it and ride. Hold it up to keep riding, lower it to stop. Every drop adds speed, flat ground bleeds it off, and the shield wears on hard ground. Sand, snow and ice are free."
 	],
 	"versions": {
+		"1.0.2": [
+			"The shield is under your feet while you ride: look down and you are standing on it, and everyone watching sees it too. Before, there was little to show a ride had started at all."
+		],
 		"1.0.1": [
 			"A demo to play in PvP Dimensions' onboarding.",
 			"A long ride asks for its advancement once, not every tick past forty blocks."

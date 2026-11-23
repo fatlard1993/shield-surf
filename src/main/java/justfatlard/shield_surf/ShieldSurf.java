@@ -3,6 +3,7 @@ package justfatlard.shield_surf;
 import justfatlard.pandorical.api.PandoricalApi;
 import justfatlard.pandorical.api.SettingsApi;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.server.level.ServerPlayer;
@@ -21,7 +22,9 @@ public class ShieldSurf implements ModInitializer {
 			.toggle("wear", "Shields wear while ridden", true)
 			.describe("A point every half second on hard ground. Sand, snow and ice are free");
 
+		Boards.register();
 		ServerTickEvents.END_SERVER_TICK.register(Rides::tick);
+		ServerLifecycleEvents.SERVER_STOPPING.register(server -> Boards.clear());
 		ServerPlayConnectionEvents.DISCONNECT.register((handler, server) -> Rides.forget(handler.getPlayer()));
 
 		LOGGER.info("Loaded shield-surf");
